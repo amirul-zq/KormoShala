@@ -1,6 +1,6 @@
 # KormoShala
 
-KormoShala is a local short-term worker marketplace for Bangladesh.
+KormoShala is a local short-term Worker marketplace for Bangladesh.
 
 ## Stack
 
@@ -10,12 +10,13 @@ KormoShala is a local short-term worker marketplace for Bangladesh.
 - MySQL
 - Git/GitHub
 
-Use Laravel server-rendered Blade views.
-Do not introduce React, Vue, Livewire, Inertia, or a separate REST frontend.
+Use server-rendered Laravel Blade.
+
+Do not introduce React, Vue, Livewire, Inertia, or a separate frontend/API architecture.
 
 ## Roles
 
-Exactly three roles exist:
+Exactly three roles:
 
 - hirer
 - worker
@@ -23,39 +24,83 @@ Exactly three roles exist:
 
 ## Core Business Tables
 
-The business domain uses:
-
 - users
 - worker_profiles
 - jobs
 - applications
+- reviews
 
 Laravel/framework infrastructure tables are allowed where required.
 
-## Job Lifecycle
+## Important Domain Rules
+
+Job lifecycle:
 
 open -> assigned -> completed
 
+Users contain common contact information:
+
+- WhatsApp number
+- address
+
+Workers additionally have Worker Profiles.
+
+A completed Job may receive one Hirer-to-Worker review.
+
+Ratings are 1-5.
+
+Worker average rating must be derived from reviews.
+
 ## Project Specification
 
-Detailed requirements are stored in:
+Complete requirements:
 
 docs/PROJECT_SPEC.md
 
-Read only the relevant sections of that specification for the current task unless explicitly instructed otherwise.
+Read only sections relevant to the current implementation task unless explicitly instructed to read the complete specification.
+
+## Project Documentation
+
+Use only the document relevant to the current task:
+
+- `docs/PROJECT_SPEC.md` — features, workflows, and UI/UX requirements
+- `docs/DATABASE.md` — tables, columns, relationships, and database rules
+- `docs/DEVELOPMENT_PLAN.md` — implementation sequence
+- `docs/PROGRESS.md` — completed work and next task
+- `docs/CHANGELOG.md` — major completed changes
+
+Do not reread all documentation for every task.
+## UI
+
+Use Blade + Tailwind.
+
+The interface must be:
+
+- professional
+- attractive
+- responsive
+- mobile friendly
+- easy to navigate
+- visually consistent
+- accessible
+
+Follow the colour, layout, component, responsive, and interaction rules defined in the UI/UX section of PROJECT_SPEC.md.
+
+Important information must have clear visual hierarchy.
+
 
 ## Development Rules
 
-- Implement only requested features.
-- Do not expand project scope.
-- Inspect relevant existing files before editing.
+- Implement only requested/specification features.
+- Do not expand scope.
+- Inspect relevant files before editing.
 - Follow Laravel conventions.
-- Use Blade and Tailwind CSS for views.
-- Enforce validation and authorization on the server.
-- Do not trust IDs, roles, ownership, prices, or statuses sent from forms.
-- Do not create unnecessary abstractions or packages.
-- Keep implementation simple and maintainable.
-- Do not commit or push Git changes unless explicitly instructed.
+- Prefer simple Laravel solutions.
+- Enforce validation and authorization server-side.
+- Never trust IDs, roles, ownership, prices, ratings, or statuses submitted by forms.
+- Reuse Blade components where useful.
+- Avoid unnecessary packages and abstraction.
+- Do not commit or push unless explicitly instructed.
 
 ## Restricted Features
 
@@ -63,8 +108,6 @@ Do not add:
 
 - payments
 - chat
-- ratings
-- reviews
 - notifications
 - KYC
 - maps
@@ -73,12 +116,14 @@ Do not add:
 - real-time functionality
 - additional user roles
 
-## After Every Implementation Task
+## Verification
 
-1. Run relevant tests.
-2. Check for errors.
+After implementation:
+
+1. Run relevant tests/checks.
+2. Fix implementation errors.
 3. Report files changed.
-4. Report tests/checks performed.
+4. Report checks/tests performed.
 5. Report remaining issues.
 
-Never claim a feature works without verifying it.
+Never claim functionality works without verification.

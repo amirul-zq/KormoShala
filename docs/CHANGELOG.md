@@ -18,6 +18,7 @@ All notable project scope, architecture, and implementation changes should be re
 - Ratings and reviews system requirement
 - Professional responsive UI/UX design requirements
 - Development plan and progress-tracking documents
+- Database specification document (`docs/DATABASE.md`)
 
 ### Changed
 
@@ -26,6 +27,7 @@ All notable project scope, architecture, and implementation changes should be re
 - Expanded the Admin Dashboard requirements
 - Expanded Worker profile and applicant information with contact, address, rating, and review data
 - Updated Claude instructions to permit ratings/reviews while continuing to prohibit out-of-scope features
+- Merged the finalized project documentation into `main`
 
 ### Removed
 

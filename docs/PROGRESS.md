@@ -1,6 +1,6 @@
 # KormoShala Project Progress
 
-Last updated: 25 July 2026
+Last updated: 26 July 2026
 
 ## Current Status
 
@@ -79,6 +79,8 @@ Database foundation and Eloquent relationships.
 - [x] `docs/DEVELOPMENT_PLAN.md` prepared
 - [x] `docs/PROGRESS.md` prepared
 - [x] `docs/CHANGELOG.md` prepared
+- [x] `docs/DATABASE.md` prepared
+- [x] Project documentation merged into `main`
 
 ## Remaining Work
 
@@ -146,7 +148,7 @@ Database foundation and Eloquent relationships.
 
 | Branch | Purpose | Status |
 |---|---|---|
-| `main` | Stable integration | Initial project only |
+| `main` | Stable integration | Project foundation and documentation |
 | `feature/core-marketplace` | Hirer/Worker marketplace | Current, ready for implementation |
 | `feature/admin-panel` | Admin features | Waiting |
 | `feature/ui-testing` | Final UI/testing | Waiting |
