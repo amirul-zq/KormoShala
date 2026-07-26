@@ -7,6 +7,7 @@ use App\Http\Controllers\HirerApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\WorkerDashboardController;
 use App\Http\Controllers\WorkerJobController;
 use App\Http\Controllers\WorkerProfileController;
 use Illuminate\Support\Facades\Route;
@@ -69,9 +70,9 @@ Route::middleware(['auth', 'active'])->group(function () {
             ->name('hirer.reviews.store');
     });
 
-    Route::get('/worker/dashboard', function () {
-        return view('worker.dashboard');
-    })->middleware('role:worker')->name('worker.dashboard');
+    Route::get('/worker/dashboard', [WorkerDashboardController::class, 'index'])
+        ->middleware('role:worker')
+        ->name('worker.dashboard');
 
     Route::middleware('role:worker')->group(function () {
         Route::get('/worker/profile/create', [WorkerProfileController::class, 'create'])
