@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +11,24 @@
 
 <body class="min-h-screen bg-slate-50">
 
-<div class="mx-auto max-w-5xl px-6 py-10">
+    <div class="mx-auto max-w-5xl px-6 py-10">
 
-    <div>
-        <h1 class="text-2xl font-bold text-slate-900">Assigned Work</h1>
-        <p class="mt-1 text-slate-600">
-            Manage assigned jobs and mark completed work.
-        </p>
-    </div>
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900">Assigned Work</h1>
+            <p class="mt-1 text-slate-600">
+                Manage assigned jobs and mark completed work.
+            </p>
+        </div>
 
-    @if (session('success'))
+        @if (session('success'))
         <div class="mt-6 rounded-lg bg-emerald-50 px-4 py-3 text-emerald-700">
             {{ session('success') }}
         </div>
-    @endif
+        @endif
 
-    <div class="mt-8 space-y-4">
+        <div class="mt-8 space-y-4">
 
-        @forelse ($jobs as $job)
+            @forelse ($jobs as $job)
 
             <div class="rounded-xl bg-white p-6 shadow-sm">
 
@@ -82,25 +83,49 @@
                 </div>
 
                 @if ($job->status === 'assigned')
-                    <form
-                        method="POST"
-                        action="{{ route('hirer.jobs.complete', $job) }}"
-                        class="mt-6"
-                    >
-                        @csrf
+                <form
+                    method="POST"
+                    action="{{ route('hirer.jobs.complete', $job) }}"
+                    class="mt-6">
+                    @csrf
 
-                        <button
-                            type="submit"
-                            class="rounded-lg bg-emerald-600 px-5 py-2.5 font-medium text-white hover:bg-emerald-700"
-                        >
-                            Mark Completed
-                        </button>
-                    </form>
+                    <button
+                        type="submit"
+                        class="rounded-lg bg-emerald-600 px-5 py-2.5 font-medium text-white hover:bg-emerald-700">
+                        Mark Completed
+                    </button>
+                </form>
+                @endif
+
+                @if ($job->status === 'completed' && !$job->review)
+                <div class="mt-6">
+                    <a
+                        href="{{ route('hirer.reviews.create', $job) }}"
+                        class="inline-block rounded-lg bg-emerald-600 px-5 py-2.5 font-medium text-white hover:bg-emerald-700">
+                        Review Worker
+                    </a>
+                </div>
+                @endif
+
+                @if ($job->status === 'completed' && $job->review)
+                <div class="mt-6 rounded-lg bg-slate-50 p-4">
+                    <p class="text-sm text-slate-500">Your Rating</p>
+                    <p class="font-semibold text-slate-900">
+                        {{ $job->review->rating }} / 5
+                    </p>
+
+                    @if ($job->review->review)
+                    <p class="mt-3 text-sm text-slate-500">Review</p>
+                    <p class="mt-1 text-slate-700">
+                        {{ $job->review->review }}
+                    </p>
+                    @endif
+                </div>
                 @endif
 
             </div>
 
-        @empty
+            @empty
 
             <div class="rounded-xl bg-white p-10 text-center shadow-sm">
                 <h2 class="font-semibold text-slate-900">
@@ -112,11 +137,12 @@
                 </p>
             </div>
 
-        @endforelse
+            @endforelse
+
+        </div>
 
     </div>
 
-</div>
-
 </body>
+
 </html>

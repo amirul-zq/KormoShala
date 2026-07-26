@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HirerApplicationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\WorkerJobController;
 use App\Http\Controllers\WorkerProfileController;
@@ -60,6 +61,12 @@ Route::middleware(['auth', 'active'])->group(function () {
 
         Route::post('/hirer/jobs/{job}/complete', [WorkController::class, 'complete'])
             ->name('hirer.jobs.complete');
+
+        Route::get('/hirer/jobs/{job}/review', [ReviewController::class, 'create'])
+            ->name('hirer.reviews.create');
+
+        Route::post('/hirer/jobs/{job}/review', [ReviewController::class, 'store'])
+            ->name('hirer.reviews.store');
     });
 
     Route::get('/worker/dashboard', function () {

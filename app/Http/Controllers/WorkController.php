@@ -23,7 +23,7 @@ class WorkController extends Controller
         $jobs = Job::query()
             ->where('hirer_id', auth()->id())
             ->whereIn('status', ['assigned', 'completed'])
-            ->with('selectedWorker')
+            ->with(['selectedWorker', 'review'])
             ->latest()
             ->get();
 
