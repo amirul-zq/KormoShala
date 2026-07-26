@@ -19,6 +19,12 @@ All notable project scope, architecture, and implementation changes should be re
 - Professional responsive UI/UX design requirements
 - Development plan and progress-tracking documents
 - Database specification document (`docs/DATABASE.md`)
+- Hirer and Worker public registration
+- Login and POST logout functionality
+- Role-based dashboard redirects and access control
+- Blocked-user protection
+- Admin account seeding
+- Worker Dashboard logout interface
 
 ### Changed
 

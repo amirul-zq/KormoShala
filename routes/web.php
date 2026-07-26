@@ -31,7 +31,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     })->middleware('role:hirer')->name('hirer.dashboard');
 
     Route::get('/worker/dashboard', function () {
-        return 'Worker Dashboard';
+        return view('worker.dashboard');
     })->middleware('role:worker')->name('worker.dashboard');
 
     Route::get('/admin/dashboard', function () {
