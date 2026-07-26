@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\HirerApplicationController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\WorkerJobController;
+use App\Http\Controllers\WorkerProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -19,20 +25,78 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/dashboard', function () {
         return match (auth()->user()->role) {
-            'hirer' => redirect()->route('hirer.dashboard'),
+            'hirer'  => redirect()->route('hirer.dashboard'),
             'worker' => redirect()->route('worker.dashboard'),
-            'admin' => redirect()->route('admin.dashboard'),
-            default => abort(403),
+            'admin'  => redirect()->route('admin.dashboard'),
+            default  => abort(403),
         };
     })->name('dashboard');
 
     Route::get('/hirer/dashboard', function () {
-        return 'Hirer Dashboard';
+        return view('hirer.dashboard');
     })->middleware('role:hirer')->name('hirer.dashboard');
+
+    Route::middleware('role:hirer')->group(function () {
+        Route::get('/hirer/jobs', [JobController::class, 'index'])
+            ->name('hirer.jobs.index');
+
+        Route::get('/hirer/jobs/create', [JobController::class, 'create'])
+            ->name('hirer.jobs.create');
+
+        Route::post('/hirer/jobs', [JobController::class, 'store'])
+            ->name('hirer.jobs.store');
+
+        Route::get('/hirer/jobs/{job}', [JobController::class, 'show'])
+            ->name('hirer.jobs.show');
+
+        Route::get('/hirer/jobs/{job}/applications', [HirerApplicationController::class, 'index'])
+            ->name('hirer.applications.index');
+
+        Route::post('/hirer/jobs/{job}/select-worker/{workerId}', [HirerApplicationController::class, 'select'])
+            ->name('hirer.applications.select');
+
+        Route::get('/hirer/assigned-work', [WorkController::class, 'hirerIndex'])
+            ->name('hirer.work.index');
+
+        Route::post('/hirer/jobs/{job}/complete', [WorkController::class, 'complete'])
+            ->name('hirer.jobs.complete');
+    });
 
     Route::get('/worker/dashboard', function () {
         return view('worker.dashboard');
     })->middleware('role:worker')->name('worker.dashboard');
+
+    Route::middleware('role:worker')->group(function () {
+        Route::get('/worker/profile/create', [WorkerProfileController::class, 'create'])
+            ->name('worker.profile.create');
+
+        Route::post('/worker/profile', [WorkerProfileController::class, 'store'])
+            ->name('worker.profile.store');
+
+        Route::get('/worker/profile/edit', [WorkerProfileController::class, 'edit'])
+            ->name('worker.profile.edit');
+
+        Route::put('/worker/profile', [WorkerProfileController::class, 'update'])
+            ->name('worker.profile.update');
+
+        Route::get('/worker/jobs', [WorkerJobController::class, 'index'])
+            ->name('worker.jobs.index');
+
+        Route::get('/worker/jobs/{job}', [WorkerJobController::class, 'show'])
+            ->name('worker.jobs.show');
+
+        Route::get('/worker/applications', [ApplicationController::class, 'index'])
+            ->name('worker.applications.index');
+
+        Route::get('/worker/jobs/{job}/apply', [ApplicationController::class, 'create'])
+            ->name('worker.applications.create');
+
+        Route::post('/worker/jobs/{job}/apply', [ApplicationController::class, 'store'])
+            ->name('worker.applications.store');
+
+        Route::get('/worker/assigned-work', [WorkController::class, 'workerIndex'])
+            ->name('worker.work.index');
+    });
 
     Route::get('/admin/dashboard', function () {
         return 'Admin Dashboard';

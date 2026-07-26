@@ -73,11 +73,11 @@ Phase 3 — Worker Profile.
 - [x] `php artisan test` passes
 - [x] `php artisan route:list` verified
 
+### Phase 3 — Worker Profile
 ## Remaining Work
 
 ### Core Marketplace
 
-- [ ] Phase 3 — Worker Profile
 - [ ] Phase 4 — Hirer Job Management
 - [ ] Phase 5 — Worker Job Feed
 - [ ] Phase 6 — Applications and Price Offers
