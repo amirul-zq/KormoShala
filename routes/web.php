@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminJobController;
+use App\Http\Controllers\AdminReviewController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminVerificationController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -121,6 +125,30 @@ Route::middleware(['auth', 'active'])->group(function () {
 
         Route::patch('/admin/users/{user}/status', [AdminUserController::class, 'toggleStatus'])
             ->name('admin.users.status');
+
+        Route::get('/admin/jobs', [AdminJobController::class, 'index'])
+            ->name('admin.jobs.index');
+
+        Route::get('/admin/jobs/{job}', [AdminJobController::class, 'show'])
+            ->name('admin.jobs.show');
+
+        Route::get('/admin/applications', [AdminApplicationController::class, 'index'])
+            ->name('admin.applications.index');
+
+        Route::get('/admin/applications/{application}', [AdminApplicationController::class, 'show'])
+            ->name('admin.applications.show');
+
+        Route::get('/admin/reviews', [AdminReviewController::class, 'index'])
+            ->name('admin.reviews.index');
+
+        Route::get('/admin/reviews/{review}', [AdminReviewController::class, 'show'])
+            ->name('admin.reviews.show');
+
+        Route::get('/admin/verification', [AdminVerificationController::class, 'index'])
+            ->name('admin.verification.index');
+
+        Route::patch('/admin/verification/{workerProfile}', [AdminVerificationController::class, 'update'])
+            ->name('admin.verification.update');
 
     });
 

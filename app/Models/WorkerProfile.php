@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class WorkerProfile extends Model
 {
@@ -15,6 +14,7 @@ class WorkerProfile extends Model
         'area',
         'description',
         'expected_rate',
+        'verification_status',
     ];
 
     public function user()
