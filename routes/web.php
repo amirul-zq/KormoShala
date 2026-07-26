@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -106,9 +108,21 @@ Route::middleware(['auth', 'active'])->group(function () {
             ->name('worker.work.index');
     });
 
-    Route::get('/admin/dashboard', function () {
-        return 'Admin Dashboard';
-    })->middleware('role:admin')->name('admin.dashboard');
+    Route::middleware('role:admin')->group(function () {
+
+        Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+            ->name('admin.dashboard');
+
+        Route::get('/admin/users', [AdminUserController::class, 'index'])
+            ->name('admin.users.index');
+
+        Route::get('/admin/users/{user}', [AdminUserController::class, 'show'])
+            ->name('admin.users.show');
+
+        Route::patch('/admin/users/{user}/status', [AdminUserController::class, 'toggleStatus'])
+            ->name('admin.users.status');
+
+    });
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
