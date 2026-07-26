@@ -33,9 +33,9 @@ Route::middleware(['auth', 'active'])->group(function () {
         };
     })->name('dashboard');
 
-    Route::get('/hirer/dashboard', function () {
-        return view('hirer.dashboard');
-    })->middleware('role:hirer')->name('hirer.dashboard');
+    Route::get('/hirer/dashboard', [JobController::class, 'dashboard'])
+        ->middleware('role:hirer')
+        ->name('hirer.dashboard');
 
     Route::middleware('role:hirer')->group(function () {
         Route::get('/hirer/jobs', [JobController::class, 'index'])

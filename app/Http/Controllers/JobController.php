@@ -55,4 +55,33 @@ class JobController extends Controller
 
         return view('hirer.jobs.show', compact('job'));
     }
+
+    public function dashboard()
+    {
+        $hirerId = auth()->id();
+
+        $totalJobs = Job::where('hirer_id', $hirerId)->count();
+        $openJobs = Job::where('hirer_id', $hirerId)
+            ->where('status', 'open')
+            ->count();
+        $assignedJobs = Job::where('hirer_id', $hirerId)
+            ->where('status', 'assigned')
+            ->count();
+        $completedJobs = Job::where('hirer_id', $hirerId)
+            ->where('status', 'completed')
+            ->count();
+
+        $totalApplicants = Job::where('hirer_id', $hirerId)
+            ->withCount('applications')
+            ->get()
+            ->sum('applications_count');
+
+        return view('hirer.dashboard', compact(
+            'totalJobs',
+            'openJobs',
+            'assignedJobs',
+            'completedJobs',
+            'totalApplicants'
+        ));
+    }
 }
