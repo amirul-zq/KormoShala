@@ -1,48 +1,104 @@
 # KormoShala Changelog
 
-All notable project scope, architecture, and implementation changes should be recorded here.
+All notable project scope, architecture, and implementation changes
+should be recorded here.
 
-## [Unreleased]
+## \[Unreleased\]
+
+## Core Marketplace Completion --- 27 July 2026
 
 ### Added
 
-- Laravel 13 project foundation
-- Blade + Tailwind CSS + MySQL architecture
-- Git and GitHub repository configuration
-- Three-feature-branch workflow
-- Claude Code development workflow
-- Project specification documentation
-- WhatsApp contact information for Hirers and Workers
-- Address information for Hirers and Workers
-- Worker category-wise statistics for the Admin Dashboard
-- Ratings and reviews system requirement
-- Professional responsive UI/UX design requirements
-- Development plan and progress-tracking documents
+#### Phase 3 --- Worker Profile
+
+-   Worker profile creation and update functionality
+-   Worker profile validation
+-   One profile per worker restriction
+
+#### Phase 4 --- Hirer Job Management
+
+-   Hirer job creation
+-   Hirer job listing and details
+-   Job ownership protection
+
+#### Phase 5 --- Worker Job Feed
+
+-   Open job browsing for workers
+-   Job detail viewing
+
+#### Phase 6 --- Applications and Price Offers
+
+-   Worker applications
+-   Offered price submission
+-   Application messages
+-   Duplicate application prevention
+
+#### Phase 7 --- Applicant Management and Worker Selection
+
+-   Hirer applicant management
+-   Worker selection workflow
+-   Job assignment system
+
+#### Phase 8 --- Assigned Work and Completion
+
+-   Assigned work views for Hirer and Worker
+-   Job completion workflow
+-   Completion authorization
+
+#### Phase 9 --- Ratings and Reviews
+
+-   Worker rating system
+-   Review submission
+-   Review display
+-   One review per job restriction
+
+#### Phase 10 --- Hirer Dashboard
+
+-   Job statistics
+-   Applicant statistics
+-   Quick actions
+
+#### Phase 11 --- Worker Dashboard
+
+-   Application statistics
+-   Assigned/completed job statistics
+-   Average rating summary
+-   Quick actions
+
+#### Phase 12 --- Verification
+
+-   Route verification
+-   Automated test verification
+-   Workflow verification
+-   Authorization verification
 
 ### Changed
 
-- Replaced the original React + Laravel REST API architecture with a single Laravel + Blade application
-- Expanded the original four business tables to five by adding `reviews`
-- Expanded the Admin Dashboard requirements
-- Expanded Worker profile and applicant information with contact, address, rating, and review data
-- Updated Claude instructions to permit ratings/reviews while continuing to prohibit out-of-scope features
+-   Updated project progress documentation to reflect completed Core
+    Marketplace phases.
+-   Updated changelog to record implementation milestones.
+-   Prepared project for Core Marketplace merge into main.
 
-### Removed
+### Verification Completed
 
-- React frontend requirement
-- Separate Laravel REST API frontend architecture
-- Ratings/reviews from the restricted-feature list
+-   `php artisan test` passed.
+-   `php artisan route:list` verified.
+-   Hirer workflow verified:
+    -   Create job
+    -   Receive applications
+    -   Select worker
+    -   Complete job
+    -   Submit review
+-   Worker workflow verified:
+    -   Create profile
+    -   Browse jobs
+    -   Apply with offer
+    -   View assigned work
+    -   View rating
 
-## Initial Project Setup
+## Next Development Phase
 
-### Added
+After merging `feature/core-marketplace` into `main`:
 
-- Initial Laravel 13 project
-- Initial Git commit
-- GitHub remote repository
-- `main` branch
-- `feature/core-marketplace`
-- `feature/admin-panel`
-- `feature/ui-testing`
-- `CLAUDE.md`
-- `docs/PROJECT_SPEC.md`
+-   Start Admin Panel development.
+-   Implement Phase 13 --- Admin Dashboard.

@@ -80,6 +80,7 @@ Can:
 - View job details
 - Remove inappropriate jobs
 - View applications
+- View ratings and reviews
 
 
 ## 3. Authentication and User Account Information
