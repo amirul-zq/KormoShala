@@ -345,20 +345,11 @@ For every feature:
 
 1. Confirm the correct branch.
 2. Ensure the working tree is clean.
-3. Give Claude one tightly scoped prompt.
-4. Inspect changed files.
-5. Run relevant tests.
-6. Fix errors.
-7. Manually verify the feature.
-8. Update `PROGRESS.md` when appropriate.
-9. Commit with a clear message.
-10. Push the branch.
-11. Use `/clear` in Claude before starting a different feature.
+3. Inspect changed files.
+4. Run relevant tests.
+5. Fix errors.
+6. Manually verify the feature.
+7. Update `PROGRESS.md` when appropriate.
+8. Commit with a clear message.
+9. Push the branch.
 
-## 6. Claude Model Usage
-
-- Sonnet: main development
-- Haiku: very small edits and straightforward fixes
-- Opus: only complex debugging after Sonnet has failed
-
-Avoid long, multi-feature Claude prompts. Ask Claude to inspect only files relevant to the current task.
