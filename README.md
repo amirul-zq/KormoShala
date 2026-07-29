@@ -160,17 +160,6 @@ The project should now be running successfully.
 
 ---
 
-# Default Login Credentials
-
-Use the credentials available in the imported database.
-
-### Admin Login :
-
-Email : admin@kormoshala.com
-Password : Admin123!
-
----
-
 # Troubleshooting
 
 ## PHP Not Found
