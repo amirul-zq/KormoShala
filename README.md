@@ -117,7 +117,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=kormoshala
 DB_USERNAME=root
-DB_PASSWORD=your_mysql_password
+DB_PASSWORD=
 ```
 
 ---
@@ -164,21 +164,10 @@ The project should now be running successfully.
 
 Use the credentials available in the imported database.
 
-Example:
+### Admin Login :
 
-### Admin
-
-Email
-
-```text
-admin@kormoshala.com
-```
-
-Password
-
-```text
-password
-```
+Email : admin@kormoshala.com
+Password : Admin123!
 
 ---
 
