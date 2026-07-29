@@ -1,23 +1,82 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Illuminate\Http\Request;
 
 class AdminJobController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::with([
+        $jobs = Job::query()
+            ->with([
                 'hirer',
-                'selectedWorker'
+                'selectedWorker',
             ])
+            ->withCount('applications')
+            ->when(
+                $request->filled('search'),
+                function ($query) use ($request) {
+                    $search = trim($request->string('search')->toString());
+
+                    $query->where(function ($subQuery) use ($search) {
+                        $subQuery
+                            ->where('title', 'like', "%{$search}%")
+                            ->orWhere('category', 'like', "%{$search}%")
+                            ->orWhere('area', 'like', "%{$search}%")
+                            ->orWhereHas(
+                                'hirer',
+                                fn($hirerQuery) => $hirerQuery->where(
+                                    'name',
+                                    'like',
+                                    "%{$search}%"
+                                )
+                            );
+                    });
+                }
+            )
+            ->when(
+                $request->filled('status'),
+                fn($query) => $query->where(
+                    'status',
+                    $request->string('status')->toString()
+                )
+            )
+            ->when(
+                $request->filled('category'),
+                fn($query) => $query->where(
+                    'category',
+                    $request->string('category')->toString()
+                )
+            )
             ->latest()
-            ->get();
+            ->paginate(10)
+            ->withQueryString();
 
-        return view('admin.jobs.index', compact('jobs'));
+        $categories = Job::query()
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category');
+
+        $totalJobs = Job::count();
+
+        $openJobs = Job::where('status', 'open')->count();
+
+        $assignedJobs = Job::where('status', 'assigned')->count();
+
+        $completedJobs = Job::where('status', 'completed')->count();
+
+        return view('admin.jobs.index', compact(
+            'jobs',
+            'categories',
+            'totalJobs',
+            'openJobs',
+            'assignedJobs',
+            'completedJobs'
+        ));
     }
-
 
     public function show(Job $job)
     {
@@ -25,9 +84,24 @@ class AdminJobController extends Controller
             'hirer',
             'selectedWorker',
             'applications.worker',
-            'review'
+            'review',
         ]);
 
         return view('admin.jobs.show', compact('job'));
     }
+
+    public function destroy(Job $job)
+    {
+        $jobTitle = $job->title;
+
+        $job->delete();
+
+        return redirect()
+            ->route('admin.jobs.index')
+            ->with(
+                'success',
+                "The job \"{$jobTitle}\" was removed successfully."
+            );
+    }
+
 }

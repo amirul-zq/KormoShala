@@ -18,6 +18,10 @@ use App\Http\Controllers\WorkerJobController;
 use App\Http\Controllers\WorkerProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -131,6 +135,9 @@ Route::middleware(['auth', 'active'])->group(function () {
 
         Route::get('/admin/jobs/{job}', [AdminJobController::class, 'show'])
             ->name('admin.jobs.show');
+
+        Route::delete('/admin/jobs/{job}', [AdminJobController::class, 'destroy'])
+            ->name('admin.jobs.destroy');
 
         Route::get('/admin/applications', [AdminApplicationController::class, 'index'])
             ->name('admin.applications.index');

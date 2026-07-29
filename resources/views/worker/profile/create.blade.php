@@ -1,122 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Worker Profile - KormoShala</title>
+@extends('layouts.app')
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('title', 'Create Worker Profile - KormoShala')
 
-<body class="min-h-screen bg-slate-50">
+@section('content')
 
-    <div class="mx-auto max-w-2xl px-6 py-10">
+<div class="mx-auto max-w-5xl">
 
-        <div class="rounded-xl bg-white p-6 shadow-sm">
+    <div>
+        <h1 class="text-2xl font-bold text-slate-900">
+            Create Worker Profile
+        </h1>
 
-            <h1 class="text-2xl font-bold text-slate-900">
-                Create Worker Profile
-            </h1>
+        <p class="mt-1 text-sm text-slate-500">
+            Add your work information so hirers can learn about your services.
+        </p>
+    </div>
 
-            <p class="mt-1 text-slate-600">
-                Add your work information so Hirers can learn about your services.
-            </p>
 
-            <form method="POST"
-                  action="{{ route('worker.profile.store') }}"
-                  class="mt-6 space-y-5">
+    <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
 
+        {{-- Profile Form --}}
+        <section class="rounded-lg border border-border bg-white p-5 sm:p-6">
+
+            <form
+                method="POST"
+                action="{{ route('worker.profile.store') }}"
+                class="space-y-6"
+            >
                 @csrf
 
+                <div class="grid gap-5 sm:grid-cols-2">
+
+                    <div>
+                        <label for="category" class="block text-sm font-semibold text-slate-700">
+                            Work Category
+                        </label>
+
+                        <input
+                            id="category"
+                            name="category"
+                            type="text"
+                            value="{{ old('category') }}"
+                            placeholder="e.g. Electrician"
+                            required
+                            class="mt-2 h-11 w-full rounded-md border {{ $errors->has('category') ? 'border-danger' : 'border-border' }} bg-white px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand focus:ring-0"
+                        >
+
+                        @error('category')
+                            <p class="mt-2 text-sm text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+
+                    <div>
+                        <label for="area" class="block text-sm font-semibold text-slate-700">
+                            Service Area
+                        </label>
+
+                        <input
+                            id="area"
+                            name="area"
+                            type="text"
+                            value="{{ old('area') }}"
+                            placeholder="e.g. Mirpur, Dhaka"
+                            required
+                            class="mt-2 h-11 w-full rounded-md border {{ $errors->has('area') ? 'border-danger' : 'border-border' }} bg-white px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand focus:ring-0"
+                        >
+
+                        @error('area')
+                            <p class="mt-2 text-sm text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                </div>
+
+
                 <div>
-                    <label for="category" class="block font-medium text-slate-700">
-                        Work Category
+                    <label for="expected_rate" class="block text-sm font-semibold text-slate-700">
+                        Expected Rate (৳)
                     </label>
 
-                    <input
-                        id="category"
-                        name="category"
-                        type="text"
-                        value="{{ old('category') }}"
-                        required
-                        class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
-                    >
+                    <div class="relative mt-2">
+                        <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-400">
+                            ৳
+                        </span>
 
-                    @error('category')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        <input
+                            id="expected_rate"
+                            name="expected_rate"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value="{{ old('expected_rate') }}"
+                            placeholder="Enter your expected rate"
+                            required
+                            class="h-11 w-full rounded-md border {{ $errors->has('expected_rate') ? 'border-danger' : 'border-border' }} bg-white pl-8 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand focus:ring-0"
+                        >
+                    </div>
+
+                    @error('expected_rate')
+                        <p class="mt-2 text-sm text-danger">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div>
-                    <label for="area" class="block font-medium text-slate-700">
-                        Service Area
-                    </label>
-
-                    <input
-                        id="area"
-                        name="area"
-                        type="text"
-                        value="{{ old('area') }}"
-                        required
-                        class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
-                    >
-
-                    @error('area')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
 
                 <div>
-                    <label for="description" class="block font-medium text-slate-700">
-                        Description
+                    <label for="description" class="block text-sm font-semibold text-slate-700">
+                        About Your Work
                     </label>
 
                     <textarea
                         id="description"
                         name="description"
-                        rows="5"
+                        rows="6"
+                        placeholder="Describe your skills, experience and the services you provide..."
                         required
-                        class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
+                        class="mt-2 w-full resize-none rounded-md border {{ $errors->has('description') ? 'border-danger' : 'border-border' }} bg-white px-3 py-3 text-sm leading-6 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:ring-0"
                     >{{ old('description') }}</textarea>
 
                     @error('description')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-2 text-sm text-danger">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div>
-                    <label for="expected_rate" class="block font-medium text-slate-700">
-                        Expected Rate (BDT)
-                    </label>
 
-                    <input
-                        id="expected_rate"
-                        name="expected_rate"
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value="{{ old('expected_rate') }}"
-                        required
-                        class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
+                <div class="flex justify-end border-t border-border-light pt-5">
+                    <button
+                        type="submit"
+                        class="inline-flex h-11 w-full items-center justify-center rounded-md bg-brand px-6 text-sm font-semibold text-white hover:bg-brand-dark sm:w-auto"
                     >
-
-                    @error('expected_rate')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+                        Create Profile
+                    </button>
                 </div>
-
-                <button
-                    type="submit"
-                    class="w-full rounded-lg bg-emerald-600 px-4 py-2 font-medium text-white hover:bg-emerald-700"
-                >
-                    Create Profile
-                </button>
 
             </form>
 
-        </div>
+        </section>
+
+
+        {{-- Information Card --}}
+        <aside class="h-fit rounded-lg border border-border bg-white p-5">
+
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-light text-brand">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 21a8 8 0 0 1 16 0"/>
+                </svg>
+            </div>
+
+            <h2 class="mt-4 font-bold text-slate-900">
+                Build your worker profile
+            </h2>
+
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+                Your profile helps hirers understand what type of work you provide and where you are available.
+            </p>
+
+            <div class="mt-5 border-t border-border-light pt-5">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    Profile includes
+                </p>
+
+                <div class="mt-3 space-y-2 text-sm text-slate-600">
+                    <p>Work category</p>
+                    <p>Service area</p>
+                    <p>Expected rate</p>
+                    <p>Work description</p>
+                </div>
+            </div>
+
+        </aside>
 
     </div>
 
-</body>
-</html>
+</div>
+
+@endsection

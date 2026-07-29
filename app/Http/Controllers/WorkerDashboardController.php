@@ -13,6 +13,8 @@ class WorkerDashboardController extends Controller
 
         $profile = auth()->user()->workerProfile;
 
+        $availableJobs = Job::where('status', 'open')->count();
+
         $totalApplications = Application::where('worker_id', $workerId)
             ->count();
 
@@ -30,6 +32,7 @@ class WorkerDashboardController extends Controller
 
         return view('worker.dashboard', compact(
             'profile',
+            'availableJobs',
             'totalApplications',
             'assignedJobs',
             'completedJobs',
