@@ -1,58 +1,309 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# KormoShala
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern Laravel-based local worker marketplace for Bangladesh that connects Hirers and Workers through a simple, secure, and user-friendly platform.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Project Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+KormoShala allows users to:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Register as a Hirer or Worker
+- Create and manage job postings
+- Browse available jobs
+- Apply for jobs
+- Select workers for jobs
+- Complete jobs
+- Submit reviews and ratings
+- Manage the platform through an Admin Panel
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Technology Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Laravel
+- Blade
+- Tailwind CSS
+- MySQL
+- Vite
+- PHP 8.3+
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+# Prerequisites
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Before running the project, install the following software:
+
+- Git
+- PHP 8.3 or later
+- Composer
+- Node.js (LTS)
+- MySQL Server 8.x
+
+---
+
+# Getting Started
+
+## 1. Clone the Repository
+
+Open **Command Prompt**, **PowerShell**, or **VS Code Terminal**.
+
+Navigate to your preferred directory.
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+cd C:\Projects
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Clone the repository.
 
-## Contributing
+```bash
+git clone <repository-url>
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Enter the project folder.
 
-## Code of Conduct
+```bash
+cd KormoShala
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 2. Install Project Dependencies
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Install PHP dependencies.
 
-## License
+```bash
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Install JavaScript dependencies.
+
+```bash
+npm install
+```
+
+---
+
+## 3. Configure the Environment
+
+If the repository already contains a `.env` file, no action is required.
+
+Otherwise, copy the provided `.env` file into the project root before running the project.
+
+---
+
+## 4. Configure the Database
+
+1. Start your MySQL Server.
+2. Create a database named:
+
+```text
+kormoshala
+```
+
+3. Import the provided database backup:
+
+```text
+kormoshala.sql
+```
+
+4. Ensure the database credentials inside the `.env` file match your local MySQL configuration.
+
+Example:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=kormoshala
+DB_USERNAME=root
+DB_PASSWORD=your_mysql_password
+```
+
+---
+
+## 5. Run the Project
+
+Open **two terminals** inside the project directory.
+
+### Terminal 1
+
+Start the Vite development server.
+
+```bash
+npm run dev
+```
+
+Leave this terminal running.
+
+---
+
+### Terminal 2
+
+Start the Laravel development server.
+
+```bash
+php artisan serve
+```
+
+---
+
+## 6. Open the Application
+
+Open your browser and visit:
+
+```
+http://127.0.0.1:8000
+```
+
+The project should now be running successfully.
+
+---
+
+# Default Login Credentials
+
+Use the credentials available in the imported database.
+
+Example:
+
+### Admin
+
+Email
+
+```text
+admin@kormoshala.com
+```
+
+Password
+
+```text
+password
+```
+
+---
+
+# Troubleshooting
+
+## PHP Not Found
+
+Verify PHP installation.
+
+```bash
+php -v
+```
+
+---
+
+## Composer Not Found
+
+Verify Composer installation.
+
+```bash
+composer -V
+```
+
+---
+
+## Node.js Not Found
+
+Verify installation.
+
+```bash
+node -v
+
+npm -v
+```
+
+---
+
+## Database Connection Error
+
+Ensure that:
+
+- MySQL Server is running.
+- The `kormoshala` database exists.
+- The database has been imported successfully.
+- The `.env` database credentials are correct.
+
+---
+
+## Frontend Assets Not Loading
+
+Run:
+
+```bash
+npm run dev
+```
+
+Keep the Vite server running while using the application.
+
+---
+
+## Port 8000 Already in Use
+
+Run Laravel on another port.
+
+```bash
+php artisan serve --port=8001
+```
+
+Then open:
+
+```
+http://127.0.0.1:8001
+```
+
+---
+
+# Daily Startup
+
+Whenever you want to run the project:
+
+Open two terminals inside the project folder.
+
+**Terminal 1**
+
+```bash
+npm run dev
+```
+
+**Terminal 2**
+
+```bash
+php artisan serve
+```
+
+Open your browser and visit:
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+# Project Structure
+
+```
+KormoShala/
+│
+├── app/
+├── bootstrap/
+├── config/
+├── database/
+├── public/
+├── resources/
+├── routes/
+├── storage/
+├── tests/
+├── vendor/
+├── package.json
+├── composer.json
+├── README.md
+└── .env
+```
+
+---
+
+# License
+
+This project was developed for academic purposes as part of a university software development project.
