@@ -267,7 +267,7 @@ Open your browser and visit:
 ```
 http://127.0.0.1:8000
 ```
-
+Try here: https://kormoshala-production.up.railway.app/
 ---
 
 # Project Structure
