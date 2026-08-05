@@ -1,148 +1,140 @@
-# KormoShala
+# KormoShala — Full-Stack Web Application
 
-A modern Laravel-based local worker marketplace for Bangladesh that connects Hirers and Workers through a simple, secure, and user-friendly platform.
+KormoShala is a **Laravel-based full-stack web application** that connects local workers and hirers through a structured role-based workflow system. It was developed to simplify local service hiring by enabling job posting, worker applications, assignment management, and service completion through secure, role-specific workflows.
+
+> **Live Demo:** https://kormoshala-production.up.railway.app/  
+> **Repository:** https://github.com/amirul-zq/KormoShala
 
 ---
 
-# Project Overview
+# 📌 Project Overview
 
-KormoShala allows users to:
+KormoShala demonstrates practical software engineering concepts through a real-world web application.
 
-- Register as a Hirer or Worker
-- Create and manage job postings
+### Worker
 - Browse available jobs
 - Apply for jobs
-- Select workers for jobs
-- Complete jobs
-- Submit reviews and ratings
-- Manage the platform through an Admin Panel
+- Manage assigned work
+- Complete tasks
+- Submit ratings and reviews
+
+### Hirer
+- Create job posts
+- Review applications
+- Select workers
+- Manage assignments
+- Rate completed work
+
+### Administrator
+- Manage platform users
+- Monitor system activities
 
 ---
 
-# Technology Stack
+# ✨ Key Features
 
+- Role-based Authentication & Authorization
+- Laravel MVC Architecture
+- Job Posting & Application Workflow
+- Worker Selection & Assignment
+- Rating & Review System
+- Relational Database Design
+- Server-side Validation
+- CSRF Protection
+- Eloquent ORM Relationships
+
+---
+
+# 🛠️ Technology Stack
+
+## Backend
+- PHP
 - Laravel
+- Eloquent ORM
+
+## Frontend
 - Blade
 - Tailwind CSS
+- HTML
+- JavaScript
+
+## Database
 - MySQL
-- Vite
-- PHP 8.3+
 
----
-
-# Prerequisites
-
-Before running the project, install the following software:
-
+## Development Tools
 - Git
-- PHP 8.3 or later
+- GitHub
 - Composer
-- Node.js (LTS)
-- MySQL Server 8.x
+- Vite
+- Node.js
+- NPM
 
 ---
 
-# Getting Started
+# 📸 Screenshots
 
-## 1. Clone the Repository
+## Home Page
+![Home Page](./screenshots/home.png)
 
-Open **Command Prompt**, **PowerShell**, or **VS Code Terminal**.
+## Hirer Dashboard
+![Hirer Dashboard](./screenshots/hirer.png)
 
-Navigate to your preferred directory.
+## Worker Dashboard
+![Worker Dashboard](./screenshots/worker.png)
 
-```bash
-cd C:\Projects
+## Admin Dashboard
+![Admin Dashboard](./screenshots/admin1.png)
+![Admin Dashboard](./screenshots/admin2.png)
+
+
+---
+
+# 🏗️ Software Engineering Concepts
+
+- Object-Oriented Programming (OOP)
+- MVC Architecture
+- CRUD Operations
+- Authentication & Authorization
+- Role-Based Access Control
+- Relational Database Design
+- Database Normalization
+- Business Logic Implementation
+- Secure Web Application Development
+
+---
+
+# 📂 Suggested Repository Structure
+
+```text
+KormoShala/
+├── README.md
+├── screenshots/
+│   ├── home.png
+│   ├── hirer.png
+│   ├── worker.png
+│   ├── admin1.png
+│   └── admin2.png
+├── app/
+├── database/
+├── public/
+├── resources/
+└── routes/
 ```
 
-Clone the repository.
+---
+
+# ⚙️ Local Setup
 
 ```bash
-git clone <repository-url>
-```
-
-Enter the project folder.
-
-```bash
+git clone https://github.com/amirul-zq/KormoShala.git
 cd KormoShala
-```
-
----
-
-## 2. Install Project Dependencies
-
-Install PHP dependencies.
-
-```bash
 composer install
-```
-
-Install JavaScript dependencies.
-
-```bash
 npm install
-```
-
----
-
-## 3. Configure the Environment
-
-If the repository already contains a `.env` file, no action is required.
-
-Otherwise, copy the provided `.env` file into the project root before running the project.
-
----
-
-## 4. Configure the Database
-
-1. Start your MySQL Server.
-2. Create a database named:
-
-```text
-kormoshala
-```
-
-3. Import the provided database backup:
-
-```text
-kormoshala.sql
-```
-
-4. Ensure the database credentials inside the `.env` file match your local MySQL configuration.
-
-Example:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=kormoshala
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
----
-
-## 5. Run the Project
-
-Open **two terminals** inside the project directory.
-
-### Terminal 1
-
-Start the Vite development server.
-
-```bash
-npm run dev
-```
-
-Leave this terminal running.
-
----
-
-### Terminal 2
-
-Start the Laravel development server.
-
-```bash
+cp .env.example .env
+php artisan key:generate
+# Configure database credentials in .env
+php artisan migrate
+npm run build
 php artisan serve
 ```
 
@@ -157,6 +149,17 @@ http://127.0.0.1:8000
 ```
 
 The project should now be running successfully.
+
+---
+
+# Default Login Credentials
+
+Use the credentials available in the imported database.
+
+### Admin Login :
+
+Email : admin@kormoshala.com
+Password : Admin123!
 
 ---
 
@@ -256,7 +259,7 @@ Open your browser and visit:
 ```
 http://127.0.0.1:8000
 ```
-Try here: https://kormoshala-production.up.railway.app/
+
 ---
 
 # Project Structure
