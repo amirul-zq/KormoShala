@@ -140,151 +140,29 @@ php artisan serve
 
 ---
 
-## 6. Open the Application
+# 🧪 Manual Testing
 
-Open your browser and visit:
-
-```
-http://127.0.0.1:8000
-```
-
-The project should now be running successfully.
-
----
-
-# Default Login Credentials
-
-Use the credentials available in the imported database.
-
-### Admin Login :
-
-Email : admin@kormoshala.com
-Password : Admin123!
+- Authentication flow
+- Role-based authorization
+- Job creation
+- Job application
+- Worker selection
+- Assignment completion
+- Rating & review workflow
 
 ---
 
-# Troubleshooting
+# 🔮 Planned Improvements
 
-## PHP Not Found
-
-Verify PHP installation.
-
-```bash
-php -v
-```
+- REST API
+- Real-time notifications
+- Payment integration
+- Automated testing
 
 ---
 
-## Composer Not Found
+# 👨‍💻 Author
 
-Verify Composer installation.
+**Amirul Alam**
 
-```bash
-composer -V
-```
-
----
-
-## Node.js Not Found
-
-Verify installation.
-
-```bash
-node -v
-
-npm -v
-```
-
----
-
-## Database Connection Error
-
-Ensure that:
-
-- MySQL Server is running.
-- The `kormoshala` database exists.
-- The database has been imported successfully.
-- The `.env` database credentials are correct.
-
----
-
-## Frontend Assets Not Loading
-
-Run:
-
-```bash
-npm run dev
-```
-
-Keep the Vite server running while using the application.
-
----
-
-## Port 8000 Already in Use
-
-Run Laravel on another port.
-
-```bash
-php artisan serve --port=8001
-```
-
-Then open:
-
-```
-http://127.0.0.1:8001
-```
-
----
-
-# Daily Startup
-
-Whenever you want to run the project:
-
-Open two terminals inside the project folder.
-
-**Terminal 1**
-
-```bash
-npm run dev
-```
-
-**Terminal 2**
-
-```bash
-php artisan serve
-```
-
-Open your browser and visit:
-
-```
-http://127.0.0.1:8000
-```
-
----
-
-# Project Structure
-
-```
-KormoShala/
-│
-├── app/
-├── bootstrap/
-├── config/
-├── database/
-├── public/
-├── resources/
-├── routes/
-├── storage/
-├── tests/
-├── vendor/
-├── package.json
-├── composer.json
-├── README.md
-└── .env
-```
-
----
-
-# License
-
-This project was developed for academic purposes as part of a university software development project.
+- GitHub: https://github.com/amirul-zq
